@@ -59,7 +59,8 @@ ALTER SEQUENCE public.projects_id_seq OWNED BY public.projects.id;
 
 CREATE TABLE public.volunteers (
     id integer NOT NULL,
-    name character varying
+    name character varying,
+    project_id integer
 );
 
 
@@ -113,7 +114,7 @@ COPY public.projects (id, title) FROM stdin;
 -- Data for Name: volunteers; Type: TABLE DATA; Schema: public; Owner: j-michael-brown
 --
 
-COPY public.volunteers (id, name) FROM stdin;
+COPY public.volunteers (id, name, project_id) FROM stdin;
 \.
 
 
