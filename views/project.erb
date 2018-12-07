@@ -1,4 +1,9 @@
 <h2><%= @project.title %></h2>
 
-
 <a href="/projects/<%=@project.id%>/edit">Edit Project</a>
+
+<dl class="">
+  <% @project.volunteers.each do |volunteer| %>
+    <dd><a href="/volunteers/<%= volunteer.id %>"><%= volunteer.name %></a></dd>
+  <% end %>
+</dl>

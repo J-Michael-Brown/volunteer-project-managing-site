@@ -21,17 +21,17 @@ patch ('/') do
   erb(:index)
 end
 
-get ('/project/:id') do
+get ('/projects/:id') do
   @project = Project.find(params[:id])
   erb(:project)
 end
 
-get ('/project/:id/edit') do
+get ('/projects/:id/edit') do
   @project = Project.find(params[:id])
   erb(:project_edit)
 end
 
-patch ('/project/:id/edit') do
+patch ('/projects/:id/edit') do
   @project = Project.find(params[:id])
   new_title = params.fetch(:title)
   @project.update({:title => new_title})
@@ -40,9 +40,26 @@ patch ('/project/:id/edit') do
   erb(:project_edit)
 end
 
-delete ('/project/:id/edit') do
+delete ('/projects/:id/edit') do
   @project = Project.find(params[:id])
   @project.delete
   # visit('/')
   erb(:project_edit)
+end
+
+get ('/volunteers/:id/edit') do
+  @volunteer = Volunteer.find(params[:id])
+  @project = Project.find(@volunteer.project_id)
+  erb(:volunteers)
+end
+
+patch ('/volunteers/:id/edit') do
+  @volunteer = Volunteer.find(params[:id])
+  new_name = params.fetch("name")
+
+  @volunteer.update({:name => new_name})
+
+  @project = Project.find(@volunteer.project_id)
+
+  erb(:volunteers)
 end
