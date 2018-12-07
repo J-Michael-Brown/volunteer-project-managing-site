@@ -25,7 +25,7 @@ _J. Michael Brown @jmichaelbrown132737@gmail.com_
 
 ## Technologies Used
 
-_Ruby ver 2.5.1, Sinatra, Capybara_
+_Ruby ver 2.5.1, Sinatra, Capybara, Postgress sql_
 
 ### License
 
