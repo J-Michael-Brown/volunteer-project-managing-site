@@ -1,0 +1,12 @@
+<form action="index.html" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="title"></label>
+  <input type="text" name="title" placeholder="Get volunteers">
+  <button type="submit" name="project-btn">Create Project</button>
+</form>
+
+<dl class="vert-list">
+  <% @projects.each do |project| %>
+    <dt><a href="/project/<%= project.id %>"><%= project.title %></a></dt>
+  <% end %>
+</dl>
