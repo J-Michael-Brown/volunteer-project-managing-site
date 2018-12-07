@@ -48,7 +48,25 @@ class Project
     volunteer_array
   end
 
+  def update(attributes)
+    new_title = attributes.fetch(:title)
+    new_id = attributes.fetch(:id, @id)
+    if new_id == nil
+      id_insert = "NULL"
+    else
+      id_insert = new_id
+    end
+    DB.exec("UPDATE projects SET (title, id) VALUES ('#{new_title}', #{id_insert}) WHERE id = #{@id};")
+    @id = new_id
+    @title = new_title
+  end
+
+  def delete
+    DB.exec("DELETE FROM projects WHERE id = #{@id};")
+    DB.exec("UPDATE volunteers SET project_id = NULL WHERE project_id = #{@id};")
+  end
+
   def ==(another_project)
-    self.title().==(another_author.title()).&(self.id().==(another_author.id()))
+    self.title().==(another_project.title())
   end
 end
