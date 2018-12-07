@@ -1,3 +1,11 @@
+Add full CRUD functionality for volunteers.
+Add a search function so employees can find projects and volunteers by name.
+Add a sort function so projects and volunteers can be sorted alphabetically.
+Add an hours field to the volunteers table to track how many hours each volunteer has worked. Employees should be able to sort volunteers by most and least hours.
+Add a method that calculates how many total hours all volunteers have put into a single project.
+Make projects sortable by total hours as well.
+
+
 # _{Application Name}_
 
 #### _{Brief description of application}, {Date of current version}_
