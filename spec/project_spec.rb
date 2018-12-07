@@ -80,6 +80,15 @@ describe Project do
       project.update({:title => 'Teaching Ruby to Kids', :id => nil})
       expect(project.title).to eq 'Teaching Ruby to Kids'
     end
+
+    it "allows user to save updates." do
+      project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+      project.save
+      project.update({:title => 'Teaching Ruby to Kids', :id => nil})
+      expect(Project.all.include?(project)).to eq false
+      project.save
+      expect(Project.all.include?(project)).to eq true
+    end
   end
 
   context '#delete' do

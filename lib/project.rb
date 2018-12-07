@@ -8,8 +8,13 @@ class Project
   end
 
   def save
-    result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
-    @id = result.first().fetch("id").to_i()
+    if (@id == nil) | (@id == false)
+      result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
+      @id = result.first().fetch("id").to_i()
+    else
+      DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = #{@id};")
+      'database updated'
+    end
   end
 
   def all
@@ -51,12 +56,6 @@ class Project
   def update(attributes)
     new_title = attributes.fetch(:title)
     new_id = attributes.fetch(:id, @id)
-    if new_id == nil
-      id_insert = "NULL"
-    else
-      id_insert = new_id
-    end
-    DB.exec("UPDATE projects SET (title, id) VALUES ('#{new_title}', #{id_insert}) WHERE id = #{@id};")
     @id = new_id
     @title = new_title
   end
@@ -64,6 +63,8 @@ class Project
   def delete
     DB.exec("DELETE FROM projects WHERE id = #{@id};")
     DB.exec("UPDATE volunteers SET project_id = NULL WHERE project_id = #{@id};")
+    "#{@id} DELETED"
+    @id = nil
   end
 
   def ==(another_project)
