@@ -35,6 +35,14 @@ patch ('/project/:id/edit') do
   @project = Project.find(params[:id])
   new_title = params.fetch(:title)
   @project.update({:title => new_title})
+  @project.save
 
+  erb(:project_edit)
+end
+
+delete ('/project/:id/edit') do
+  @project = Project.find(params[:id])
+  @project.delete
+  # visit('/')
   erb(:project_edit)
 end
