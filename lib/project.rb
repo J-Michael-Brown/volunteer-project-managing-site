@@ -17,7 +17,7 @@ class Project
     end
   end
 
-  def all
+  def self.all
     results = DB.exec("SELECT * FROM projects;")
     projects = []
     results.each do |result|
@@ -40,11 +40,11 @@ class Project
     results = DB.exec("SELECT * FROM volunteers WHERE project_id = #{@id};")
     volunteer_array = []
     results.each do |result|
-      title = result.fetch("title")
+      name = result.fetch("name")
       id = result.fetch("id").to_i
       project_id = result.fetch("project_id").to_i
-      volunteer = Project.new({
-        :title => title,
+      volunteer = Volunteer.new({
+        :name => name,
         :id => id,
         :project_id => project_id
       })

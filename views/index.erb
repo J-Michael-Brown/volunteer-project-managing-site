@@ -1,4 +1,4 @@
-<form action="index.html" method="post">
+<form action="/" method="post">
   <input type="hidden" name="_method" value="patch">
   <label for="title"></label>
   <input type="text" name="title" placeholder="Get volunteers">
@@ -7,6 +7,6 @@
 
 <dl class="vert-list">
   <% @projects.each do |project| %>
-    <dt><a href="/project/<%= project.id %>"><%= project.title %></a></dt>
+    <dt><a href="/projects/<%= project.id %>"><%= project.title %></a></dt>
   <% end %>
 </dl>

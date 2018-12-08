@@ -1,13 +1,20 @@
-<h2><%= @project.title %></h2>
- <form action="/project/<%=@project.id%>/edit" method="post">
-  <input type="hidden" name="_method" value="patch">
+<% if @message != 'project deleted' %>
 
-  <input type="text" name="title" placeholder="New Title">
+  <h2><%= @project.title %></h2>
+   <form action="/projects/<%=@project.id%>/edit" method="post">
+    <input type="hidden" name="_method" value="patch">
 
-  <button type="submit" name="edit-btn">Update Project</button>
- </form>
+    <input type="text" name="title" placeholder="New Title">
 
-<form action="/project/<%=@project.id%>/edit" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <button type="click" name="delete-btn">Delete Project</button>
-</form>
+    <button type="submit" name="edit-btn">Update Project</button>
+   </form>
+
+  <form action="/projects/<%=@project.id%>/edit" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button type="submit" name="delete-btn">Delete Project</button>
+  </form>
+
+ <% end %>
+
+ <p><%= @message %></p>
+ <a href="/">Home</a>

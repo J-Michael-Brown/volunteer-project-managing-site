@@ -1,5 +1,5 @@
 class Volunteer
-  attr_reader(:name, :project_id)
+  attr_reader(:name, :project_id, :id)
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
@@ -8,8 +8,8 @@ class Volunteer
   end
 
   def save
-    if @id.class == Interger
-      DB.exec("UPDATE voluneers SET (name, project_id) VALUES ('#{@name}', #{@project_id}) WHERE id = #{@id};")
+    if @id.class == Integer
+      DB.exec("UPDATE volunteers SET (name, project_id) VALUES ('#{@name}', #{@project_id}) WHERE id = #{@id};")
       'database updated'
     else
       result = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;")
@@ -17,9 +17,9 @@ class Volunteer
     end
   end
 
-  def all
-    results = DB.exec("SELECT * FROM voluneers;")
-    voluneers = []
+  def self.all
+    results = DB.exec("SELECT * FROM volunteers;")
+    volunteers = []
     results.each do |result|
       name = result.fetch("name")
       project_id = result.fetch("project_id")
@@ -32,16 +32,16 @@ class Volunteer
         :project_id => project_id,
         :id => id
       })
-      voluneers.push(volunteer)
+      volunteers.push(volunteer)
     end
-    voluneers
+    volunteers
   end
 
   def self.find(id)
-    results = DB.exec("SELECT * FROM voluneers WHERE id = #{id};")
+    results = DB.exec("SELECT * FROM volunteers WHERE id = #{id};")
     name = results.first.fetch("name")
-    id = result.first.fetch("id").to_i
-    project_id = result.first.fetch("project_id")
+    id = results.first.fetch("id").to_i
+    project_id = results.first.fetch("project_id")
     if project_id != 'NULL'
       project_id = project_id.to_i
     end
@@ -64,7 +64,7 @@ class Volunteer
   end
 
   def delete
-    DB.exec("DELETE FROM voluneers WHERE id = #{@id};")
+    DB.exec("DELETE FROM volunteers WHERE id = #{@id};")
     @id = nil
   end
 

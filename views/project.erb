@@ -2,8 +2,14 @@
 
 <a href="/projects/<%=@project.id%>/edit">Edit Project</a>
 
-<dl class="">
-  <% @project.volunteers.each do |volunteer| %>
+<form action="/projects/<%= @project.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="text" name="name" placeholder="Jane Dough">
+  <button type="submit" name="update">Add Volunteer</button>
+</form>
+
+<dl>
+  <% @volunteers.each do |volunteer| %>
     <dd><a href="/volunteers/<%= volunteer.id %>"><%= volunteer.name %></a></dd>
   <% end %>
 </dl>

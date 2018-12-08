@@ -40,10 +40,12 @@ describe 'the project delete path', {:type => :feature} do
   it 'allows a user to delete a project' do
     test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
     test_project.save
+    visit '/'
+    expect(page).to have_content('Teaching Kids to Code')
     id = test_project.id
-    visit "/projects/#{id}/edit"
+    visit "/projects/#{test_project.id}/edit"
     click_button('Delete Project')
-    vist '/'
+    click_link('Home')
     expect(page).not_to have_content("Teaching Kids to Code")
   end
 end
