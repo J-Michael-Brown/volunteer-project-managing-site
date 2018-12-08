@@ -1,31 +1,44 @@
-# _{Application Name}_
+# _Volunteer Tracker_
 
-#### _{Brief description of application}, {Date of current version}_
+#### _allows a user to track projects and volunteers, December 7th, 2018_
 
 #### By _**J. Michael Brown**_
 
 ## Description
 
-_{This is a detailed description of your application. Its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
+_This sit allows a user to add projects. The user may then edit that project to contain volunteers associated with that project. The user may also edit the project title, remove volunteers, or delete the project entirely. Individual volunteers may also be viewed and renamed._
 
-## Setup/Installation Requirements
+## Setup/Installation Requirements  
+Requires:
+* psql
+* Sinatra
+* Capybara (If you want to perform rspecs)
 
+Install:
 * _Copy this Project to your Desktop_
-* _**$ ruby app.rb** (Run: "ruby app.rb" in your terminal)_
+* _(Within your computer
+  s terminal)_ **Run:**    
+  *  **$ createdb volunteer_tracker** _(creates local database to dump tables into)_
+  * **$ psql volunteer_tracker < database_backup.sql** _(fills local database with necessary ta)_
+  * **$ createdb -T volunteer_tracker volunteer_tracker_test** _(If you want to perform an rspec)_
+  * **$ ruby app.rb** _(Starts local host of program)_
+* _(Copy the 'port' number that was given to you when you ran $ ruby app.rb) go to the **URL** 'localhost:{your port number}'_
+  * Example: 'localhost:4567'  
 
-_{Extra/ alternative methods, anything they should know?}_
+
+  You should be Ready to use the app now.
 
 ## Known Bugs
 
-_{Are there issues that have not yet been resolved that you want to let users know you know?  Outline any issues that would impact use of your application.  Share any workarounds that are in place. }_
+_No known bugs yet. Contact me (Michael) via email if you would like to report any._
 
 ## Support and contact details
 
-_J. Michael Brown @jmichaelbrown132737@gmail.com_
+_If any instructions are uncleare contact J. Michael Brown  at this emaail address: @jmichaelbrown132737@gmail.com_
 
 ## Technologies Used
 
-_Ruby ver 2.5.1, Sinatra, Capybara, Postgress sql_
+_Ruby, Sinatra, Capybara, Postgress sql_
 
 ### License
 
